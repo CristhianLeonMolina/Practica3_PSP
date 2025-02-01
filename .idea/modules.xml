@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Practica3_PSP.iml" filepath="$PROJECT_DIR$/Practica3_PSP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TcpCliente/TcpCliente.iml" filepath="$PROJECT_DIR$/TcpCliente/TcpCliente.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TcpServer/TcpServer.iml" filepath="$PROJECT_DIR$/TcpServer/TcpServer.iml" />
+    </modules>
+  </component>
+</project>
