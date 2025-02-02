@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/Practica3_PSP.iml" filepath="$PROJECT_DIR$/Practica3_PSP.iml" />
       <module fileurl="file://$PROJECT_DIR$/TcpCliente/TcpCliente.iml" filepath="$PROJECT_DIR$/TcpCliente/TcpCliente.iml" />
       <module fileurl="file://$PROJECT_DIR$/TcpServer/TcpServer.iml" filepath="$PROJECT_DIR$/TcpServer/TcpServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UdpCliente/UdpCliente.iml" filepath="$PROJECT_DIR$/UdpCliente/UdpCliente.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UdpServer/UdpServer.iml" filepath="$PROJECT_DIR$/UdpServer/UdpServer.iml" />
     </modules>
   </component>
 </project>
