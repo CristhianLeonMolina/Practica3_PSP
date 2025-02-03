@@ -18,12 +18,27 @@ class UdpServer {
                 socket.receive(packet);
                 String message = new String(packet.getData(), 0, packet.getLength());
                 InetSocketAddress clientAddress = new InetSocketAddress(packet.getAddress(), packet.getPort());
+
                 synchronized (clients) {
                     clients.add(clientAddress);
                 }
+
+                // Si el cliente solicita el historial
+                if (message.equals("NEW_CLIENT")) {
+                    synchronized (history) {
+                        for (String oldMessage : history) {
+                            byte[] historyData = oldMessage.getBytes();
+                            DatagramPacket historyPacket = new DatagramPacket(historyData, historyData.length, clientAddress);
+                            socket.send(historyPacket);
+                        }
+                    }
+                    continue; // No enviar este mensaje a otros clientes
+                }
+
                 synchronized (history) {
                     history.add(message);
                 }
+
                 byte[] sendData = message.getBytes();
                 synchronized (clients) {
                     for (InetSocketAddress client : clients) {
