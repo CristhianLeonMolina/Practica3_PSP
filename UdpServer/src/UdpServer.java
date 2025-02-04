@@ -21,10 +21,17 @@ class UdpServer {
 
                 synchronized (clients) {
                     clients.add(clientAddress);
+
+                    String saludo = "Hola " + message.substring(10);
+                    System.out.println(saludo);
+                    byte[] mensajes = saludo.getBytes();
+                    DatagramPacket historyPacket = new DatagramPacket(mensajes, mensajes.length, clientAddress);
+                    socket.send(historyPacket);
                 }
 
                 // Si el cliente solicita el historial
-                if (message.equals("NEW_CLIENT")) {
+                if (message.substring(0, 10).equals("NEW_CLIENT")) {
+                    message.substring(0, 10).equals("NEW_CLIENT");
                     synchronized (history) {
                         for (String oldMessage : history) {
                             byte[] historyData = oldMessage.getBytes();

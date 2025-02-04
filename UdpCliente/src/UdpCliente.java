@@ -3,9 +3,11 @@ import java.net.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class UdpCliente {
+    private static ArrayList<String> nombres = new ArrayList<String>();
     private static final int SERVER_PORT = 12346;
     private DatagramSocket socket;
     private InetAddress serverAddress;
@@ -47,10 +49,13 @@ public class UdpCliente {
     private void setNickname(ActionEvent e) {
         if (!nameSet) {
             nickname = nameField.getText().trim();
-            if (!nickname.isEmpty()) {
+            if (!nickname.isEmpty() && !nombres.contains(nickname)) {
+                nombres.add(nickname);
                 nameSet = true;
                 nameField.setEditable(false);
+                sendMessage(new ActionEvent(this, ActionEvent.ACTION_PERFORMED,  "NEW_CLIENT" + nickname));
             }
+
         }
     }
 
