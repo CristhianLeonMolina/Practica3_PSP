@@ -53,7 +53,8 @@ public class UdpCliente {
                 nombres.add(nickname);
                 nameSet = true;
                 nameField.setEditable(false);
-                sendMessage(new ActionEvent(this, ActionEvent.ACTION_PERFORMED,  "NEW_CLIENT" + nickname));
+                //sendMessage(new ActionEvent(this, ActionEvent.ACTION_PERFORMED,  "NEW_CLIENT"));
+                //sendMessage(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, nickname));
             }
 
         }
