@@ -19,9 +19,6 @@ class UdpServer {
 
                 synchronized (clients) {
                     clients.add(clientAddress);
-
-//                    String saludo =  message;
-//                    System.out.println(saludo);
                     byte[] mensajes = message.getBytes();
                     DatagramPacket historyPacket = new DatagramPacket(mensajes, mensajes.length, clientAddress);
                     socket.send(historyPacket);
