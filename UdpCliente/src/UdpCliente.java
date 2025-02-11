@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class UdpCliente {
     private static ArrayList<String> nombres = new ArrayList<String>();
@@ -53,10 +52,23 @@ public class UdpCliente {
                 nombres.add(nickname);
                 nameSet = true;
                 nameField.setEditable(false);
-                //sendMessage(new ActionEvent(this, ActionEvent.ACTION_PERFORMED,  "NEW_CLIENT"));
-                //sendMessage(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, nickname));
-            }
 
+                try {
+                    // Enviar mensaje de nuevo cliente al servidor
+                    String newClientMessage = "NEW_CLIENT";
+                    byte[] buffer = newClientMessage.getBytes();
+                    DatagramPacket packet = new DatagramPacket(buffer, buffer.length, serverAddress, SERVER_PORT);
+                    socket.send(packet);
+
+                    // Enviar el nickname después de la solicitud de historial
+                    String nickMessage = nickname + " se ha conectado.";
+                    buffer = nickMessage.getBytes();
+                    packet = new DatagramPacket(buffer, buffer.length, serverAddress, SERVER_PORT);
+                    socket.send(packet);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 
@@ -85,7 +97,11 @@ public class UdpCliente {
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
                 String message = new String(packet.getData(), 0, packet.getLength());
-                SwingUtilities.invokeLater(() -> messageArea.append(message + "\n"));
+
+                // No mostrar "NEW_CLIENT" en la interfaz
+                if (!message.equals("NEW_CLIENT")) {
+                    SwingUtilities.invokeLater(() -> messageArea.append(message + "\n"));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

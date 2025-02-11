@@ -1,9 +1,5 @@
 import java.io.*;
 import java.net.*;
-import java.util.*;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ClientHandler extends Thread {
     private Socket socket;
@@ -13,12 +9,6 @@ public class ClientHandler extends Thread {
 
     public ClientHandler(Socket socket) {
         this.socket = socket;
-        try {
-            // Establecer el timeout para este socket (60 segundos)
-            this.socket.setSoTimeout(60000);  // 60 segundos
-        } catch (SocketException e) {
-            System.err.println("Error al establecer el timeout: " + e.getMessage());
-        }
     }
 
     public void run() {
