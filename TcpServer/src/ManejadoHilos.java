@@ -1,13 +1,13 @@
 import java.io.*;
 import java.net.*;
 
-public class ClientHandler extends Thread {
+public class ManejadoHilos extends Thread {
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
     private String nickname;
 
-    public ClientHandler(Socket socket) {
+    public ManejadoHilos(Socket socket) {
         this.socket = socket;
     }
 

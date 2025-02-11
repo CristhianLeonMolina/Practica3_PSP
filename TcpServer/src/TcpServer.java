@@ -12,7 +12,7 @@ public class TcpServer {
         System.out.println("Servidor TCP iniciado...");
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             while (true) {
-                new ClientHandler(serverSocket.accept()).start();
+                new ManejadoHilos(serverSocket.accept()).start();
             }
         } catch (IOException e) {
             e.printStackTrace();
